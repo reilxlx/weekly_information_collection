@@ -11,3 +11,12 @@ DB-GPT-Hub是一个利用LLMs实现Text-to-SQL解析的实验项目，主要包�
 该项目提供数据集、支持多种base模型微调、支持lora和QLora，支持多卡训练，提供不同模型微调的lora_target且包含模型效果评估。</br>
 https://github.com/eosphoros-ai/DB-GPT-Hub</br>
 ![ComfyUI](./data/DBGPT.JPG)
+
+# MarkDownload - Markdown Web Clipper
+Chrome插件，用于将网页信息转换为md文件下载</br>
+https://chromewebstore.google.com/detail/markdownload-markdown-web/pcmpcfapbekmbjjkdalcgopdkipoggdi</br>
+
+# 新手LLM培训指南 --- The Novice's LLM Training Guide.md
+[原始版本链接](https://rentry.org/llm-training#the-basics)https://rentry.org/llm-training#the-basics</br>
+[双语翻译版本,新手LLM培训指南 --- The Novice's LLM Training Guide](./新手LLM培训指南%20---%20The%20Novice's%20LLM%20Training%20Guide.md)</br>
+![llm](./data/llm.JPG)
