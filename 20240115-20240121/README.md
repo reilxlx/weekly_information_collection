@@ -1,6 +1,6 @@
 # Surya OCR工具包
 Surya 是一个多语言文档 OCR 工具包。它可以做到：（准确的行级文本检测、文本识别、表格和图表检测）</br>
-pip install surya-ocr，模型权重将在您第一次运行 surya 时自动下载。
+pip install surya-ocr，模型权重将在您第一次运行 surya 时自动下载。</br>
 https://github.com/VikParuchuri/surya
 
 
