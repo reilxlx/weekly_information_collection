@@ -46,7 +46,7 @@ https://github.com/michaelfeil/infinityhttps://github.com/michaelfeil/infinity</
 https://github.com/do-me/SemanticFinder</br>
 
 
-# bce-reranker-base_v1 + bce-embedding-base_v1
+# 07 bce-reranker-base_v1 + bce-embedding-base_v1
 BCEmbedding是由网易有道开发的双语和跨语种语义表征算法模型库，其中包含EmbeddingModel和RerankerModel两类基础模型。EmbeddingModel专门用于生成语义向量，在语义搜索和问答中起着关键作用，而RerankerModel擅长优化语义搜索结果和语义相关顺序精排。</br>
 
 bce-embedding-base_v1 主要特点(Key Features)：
@@ -60,3 +60,6 @@ RAG优化，适配更多真实业务场景(RAG adaptation for more domains)；
 适配长文本做rerank(Fix the reranking strategy for long passages)。</br>
 https://huggingface.co/maidalun1020/bce-reranker-base_v1</br>
 https://huggingface.co/maidalun1020/bce-embedding-base_v1</br>
+
+# 中文 Emebedding & Reranker 模型选型
+[中文 Emebedding & Reranker 模型选型](./中文%20Emebedding%20&%20Reranker%20模型选型.md)
