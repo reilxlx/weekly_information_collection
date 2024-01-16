@@ -44,3 +44,19 @@ https://github.com/michaelfeil/infinityhttps://github.com/michaelfeil/infinity</
 直接在浏览器中进行语义搜索！使用 transformers.js 和 sentence-transformers/all-MiniLM-L6-v2 的量化版本，在没有服务器端推理的情况下计算嵌入和余弦相似度。</br>
 数据隐私友好 - 您输入的文本数据不会发送到服务器，而是保留在您的浏览器中！</br>
 https://github.com/do-me/SemanticFinder</br>
+
+
+# bce-reranker-base_v1 + bce-embedding-base_v1
+BCEmbedding是由网易有道开发的双语和跨语种语义表征算法模型库，其中包含EmbeddingModel和RerankerModel两类基础模型。EmbeddingModel专门用于生成语义向量，在语义搜索和问答中起着关键作用，而RerankerModel擅长优化语义搜索结果和语义相关顺序精排。</br>
+
+bce-embedding-base_v1 主要特点(Key Features)：
+中英双语，以及中英跨语种能力(Bilingual and Crosslingual capability in English and Chinese)；
+RAG优化，适配更多真实业务场景(RAG adaptation for more domains)；
+方便集成进langchain和llamaindex(Easy integrations for langchain and llamaindex)。</br>
+
+bce-reranker-base_v1 主要特点(Key Features)：
+中英日韩四个语种，以及中英日韩四个语种的跨语种能力(Multilingual and Crosslingual capability in English, Chinese, Japanese and Korean)；
+RAG优化，适配更多真实业务场景(RAG adaptation for more domains)；
+适配长文本做rerank(Fix the reranking strategy for long passages)。</br>
+https://huggingface.co/maidalun1020/bce-reranker-base_v1</br>
+https://huggingface.co/maidalun1020/bce-embedding-base_v1</br>
