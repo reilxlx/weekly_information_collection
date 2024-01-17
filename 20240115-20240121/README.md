@@ -76,13 +76,13 @@ Resemble Enhance 是一种 AI 驱动的工具，旨在通过执行降噪和增�
 
 安装稳定版本：
  ```
-pip install resemble-enhance --upgrade</br>
+pip install resemble-enhance --upgrade
  ```
 增强：
  ```
-resemble_enhance in_dir out_dir</br>
+resemble_enhance in_dir out_dir
  ```
 降噪：
  ```
-resemble_enhance in_dir out_dir --denoise_only</br>
+resemble_enhance in_dir out_dir --denoise_only
  ```
