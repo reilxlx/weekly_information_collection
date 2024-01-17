@@ -61,5 +61,28 @@ RAG优化，适配更多真实业务场景(RAG adaptation for more domains)；
 https://huggingface.co/maidalun1020/bce-reranker-base_v1</br>
 https://huggingface.co/maidalun1020/bce-embedding-base_v1</br>
 
-# 中文 Emebedding & Reranker 模型选型
+# 08 中文 Emebedding & Reranker 模型选型
 [中文 Emebedding & Reranker 模型选型](./中文%20Emebedding%20&%20Reranker%20模型选型.md)
+
+# 09 Transform Screenshots into HTML Code
+UI界面截图转换成HTML代码。
+包含 823,000 对网站屏幕截图和 HTML/CSS 代码的数据集。 
+Websight 旨在训练视觉语言模型 （VLM） 以将图像转换为代码。</br>
+数据集：https://huggingface.co/datasets/HuggingFaceM4/WebSight</br>
+模型：  https://huggingface.co/HuggingFaceM4/VLM_WebSight_finetuned</br>
+
+# 10 音频降噪增强模型
+Resemble Enhance 是一种 AI 驱动的工具，旨在通过执行降噪和增强来提高整体语音质量。它由两个模块组成：一个降噪器，用于将语音与嘈杂的音频分离，以及一个增强器，通过恢复音频失真和扩展音频带宽来进一步提高感知音频质量。这两个模型在高质量的 44.1kHz 语音数据上进行训练，可保证以高质量增强您的语音。
+
+安装稳定版本：
+ ```
+pip install resemble-enhance --upgrade</br>
+ ```
+增强：
+ ```
+resemble_enhance in_dir out_dir</br>
+ ```
+降噪：
+ ```
+resemble_enhance in_dir out_dir --denoise_only</br>
+ ```
