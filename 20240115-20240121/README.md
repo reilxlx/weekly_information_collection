@@ -87,3 +87,68 @@ resemble_enhance in_dir out_dir
 resemble_enhance in_dir out_dir --denoise_only
  ```
  https://github.com/resemble-ai/resemble-enhance
+
+ # 11 whisper针对大型语音数据集再次训练
+ 数据集：speech_asr/speech_asr_aishell1_trainsets</br>
+ 数据集简介
+用于“Aishell-1学术数据集的中文语音识别模型”的Aishell-1训练集。
+
+希尔贝壳中文普通话开源语音数据库AISHELL-ASR0009-OS1录音时长178小时，是希尔贝壳中文普通话语音数据库AISHELL-ASR0009的一部分。AISHELL-ASR0009录音文本涉及智能家居、无人驾驶、工业生产等11个领域。录制过程在安静室内环境中， 同时使用3种不同设备： 高保真麦克风（44.1kHz，16-bit）；Android系统手机（16kHz，16-bit）；iOS系统手机（16kHz，16-bit）。高保真麦克风录制的音频降采样为16kHz，用于制作AISHELL-ASR0009-OS1。400名来自中国不同口音区域的发言人参与录制。经过专业语音校对人员转写标注，并通过严格质量检验，此数据库文本正确率在95%以上。分为训练集、开发集、测试集。（支持学术研究，未经允许禁止商用。）
+
+# 12 opencompass
+系统性评估大模型在语言、知识、推理、创作、长文本和智能体等多个能力维度的表现。</br>
+安装
+ ```
+conda create --name opencompass python=3.10 pytorch torchvision pytorch-cuda -c nvidia -c pytorch -y
+conda activate opencompass
+git clone https://github.com/open-compass/opencompass opencompass
+cd opencompass
+pip install -e .
+ ```
+使用，下载数据集到 opencompass/data/ 处</br>
+ ```
+wget https://github.com/open-compass/opencompass/releases/download/0.1.8.rc1/OpenCompassData-core-20231110.zip</br>
+unzip OpenCompassData-core-20231110.zip
+ ```
+OpenCompass 预定义了许多模型和数据集的配置，你可以通过 工具 列出所有可用的模型和数据集配置。</br>
+ ```
+ # 列出所有配置
+python tools/list_configs.py
+# 列出所有跟 llama 及 mmlu 相关的配置
+python tools/list_configs.py llama mmlu
+ ```
+ 测评模型</br>
+  ```
+ python run.py --models hf_llama_7b --datasets mmlu_ppl ceval_ppl
+  ```
+
+
+https://github.com/open-compass/opencompass/blob/main/README_zh-CN.md
+
+# 13 AWPortrait civitai模型
+![AWPortrait](./data/civitai-model-Awportrait1.3.JPG)
+https://civitai.com/models/61170?modelVersionId=304593</br>
+
+
+# 14 中文Chinese-Mixtral-8x7B
+本项目基于Mistral发布的模型Mixtral-8x7B进行了中文扩词表增量预训练，希望进一步促进中文自然语言处理社区对MoE模型的研究。我们扩充后的词表显著提高了模型对中文的编解码效率，并通过大规模开源语料对扩词表模型进行增量预训练，使模型具备了强大的中文生成和理解能力。
+
+项目开源内容：</br>
+1、中文Mixtral-8x7B扩词表大模型</br>
+2、扩词表增量预训练代码</br>
+https://github.com/HIT-SCIR/Chinese-Mixtral-8x7B
+
+分别使用以下评测数据集对Chinese-Mixtral-8x7B进行评测：</br>
+C-Eval：一个全面的中文基础模型评估套件。它包含了13948个多项选择题，涵盖了52个不同的学科和四个难度级别。</br>
+CMMLU：一个综合性的中文评估基准，专门用于评估语言模型在中文语境下的知识和推理能力，涵盖了从基础学科到高级专业水平的67个主题。</br>
+MMLU：一个包含57个多选任务的英文评测数据集，涵盖了初等数学、美国历史、计算机科学、法律等，难度覆盖高中水平到专家水平，是目前主流的LLM评测数据集之一。</br>
+HellaSwag：一个极具挑战的英文NLI评测数据集，每一个问题都需要对上下文进行深入理解，而不能基于常识进行回答。</br>
+
+合并QLora模型</br>
+ChrisHayduk/merge_qlora_with_quantized_model.py</br>
+https://gist.github.com/ChrisHayduk/1a53463331f52dca205e55982baf9930</br>
+
+微调模型</br>
+https://github.com/huggingface/trl/blob/main/examples/scripts/sft.py</br>
+https://github.com/ymcui/Chinese-LLaMA-Alpaca-2/blob/main/scripts/training/run_pt.sh
+
