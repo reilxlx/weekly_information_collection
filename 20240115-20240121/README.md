@@ -152,3 +152,7 @@ https://gist.github.com/ChrisHayduk/1a53463331f52dca205e55982baf9930</br>
 https://github.com/huggingface/trl/blob/main/examples/scripts/sft.py</br>
 https://github.com/ymcui/Chinese-LLaMA-Alpaca-2/blob/main/scripts/training/run_pt.sh
 
+模型效果评估</br>
+EleutherAI/lm-evaluation-harness</br>
+https://github.com/EleutherAI/lm-evaluation-harness/tree/28ec7fa950346b5a895e85e1f3edd5648168acc4</br>
+
