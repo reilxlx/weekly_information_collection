@@ -16,6 +16,8 @@ BASE TTS 是迄今为止最大的 TTS 模型，在 100K 小时的公共领域语
 https://www.amazon.science/base-tts-samples/
 
 # 03 DoRA
+
+
 `````Python
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
@@ -147,4 +149,137 @@ if __name__ == "__main__":
         predictions = model(inputs)  # 做出预测
         loss = criterion(predictions, targets)  # 计算损失
         print(f"Final (DoRA) Evaluation Loss: {loss.item()}")  # 打印最终的评估损失
+`````
+
+# 04 Magika 毫秒级识别内容类型，识别准确率超99%
+Magika 是一种新颖的 AI 驱动的文件类型检测工具，它依靠深度学习的最新进展来提供准确的检测。在引擎盖下，Magika 采用了定制的、高度优化的 Keras 模型，该模型仅重约 1MB，即使在单个 CPU 上运行，也能在几毫秒内实现精确的文件识别。</br>
+在超过 1M 个文件和 100 多种内容类型（涵盖二进制和文本文件格式）的评估中，Magika 实现了 99%+ 的精确度和召回率。Magika 用于将 Gmail、云端硬盘和安全浏览文件路由到适当的安全和内容政策扫描程序，从而帮助提高 Google 用户的安全性。</br>
+``````python
+$ pip install magika
+>>> from magika import Magika
+>>> m = Magika()
+>>> res = m.identify_bytes(b"# Example\nThis is an example of markdown!")
+>>> print(res.output.ct_label)
+markdown
+``````
+
+https://github.com/google/magika
+
+# 05 Open-Source Pre-Processing Tools for Unstructured Data
+用于非结构化数据的开源预处理工具</br>
+该 unstructured 库提供用于摄取和预处理图像和文本文档（如 PDF、HTML、Word 文档等）的开源组件。unstructured 围绕着简化和优化 的数据处理工作流程LLMs展开。</br>
+1. 安装 Python SDK 以支持所有文档类型 pip install "unstructured[all-docs]"
+2. 对于不需要任何额外依赖项的纯文本文件、HTML、XML、JSON 和电子邮件，您可以运行 pip install unstructured
+3. 要处理其他文档类型，您可以安装这些文档所需的附加功能，例如 pip install "unstructured[docx,pptx]"
+
+
+libmagic-dev （文件类型检测）</br>
+poppler-utils （图片和 PDF）</br>
+tesseract-ocr （图像和 PDF，安装 tesseract-lang 以获得额外的语言支持）</br>
+libreoffice （MS Office 文档）</br>
+pandoc （EPUB、RTF 和 Open Office 文档）</br>
+
+`````python
+from unstructured.partition.auto import partition
+
+elements = partition(filename="example-docs/eml/fake-email.eml")
+print("\n\n".join([str(el) for el in elements]))
+`````
+https://github.com/Unstructured-IO/unstructured
+
+# 06 semantic-router 语义路由器
+语义路由器是您的LLM和代理的超快决策层。与等待缓慢的LLM生成器进行工具使用决策不同，我们利用语义向量空间的魔力来做出这些决策——使用语义含义来路由我们的请求。
+## 安装
+`````bash
+pip install -qU semantic-router
+`````
+## 定义一组 Route 对象
+`````python
+from semantic_router import Route
+# we could use this as a guide for our chatbot to avoid political conversations
+politics = Route(
+    name="politics",
+    utterances=[
+        "isn't politics the best thing ever",
+        "why don't you tell me about your political opinions",
+        "don't you just love the president" "don't you just hate the president",
+        "they're going to destroy this country!",
+        "they will save the country!",
+    ],
+)
+
+# this could be used as an indicator to our chatbot to switch to a more
+# conversational prompt
+chitchat = Route(
+    name="chitchat",
+    utterances=[
+        "how's the weather today?",
+        "how are things going?",
+        "lovely weather today",
+        "the weather is horrendous",
+        "let's go to the chippy",
+    ],
+)
+
+# we place both of our decisions together into single list
+routes = [politics, chitchat]
+`````
+
+## 初始化一个嵌入/编码器模型
+`````python
+import os
+from semantic_router.encoders import CohereEncoder, OpenAIEncoder
+
+# for Cohere
+os.environ["COHERE_API_KEY"] = "<YOUR_API_KEY>"
+encoder = CohereEncoder()
+
+# or for OpenAI
+os.environ["OPENAI_API_KEY"] = "<YOUR_API_KEY>"
+encoder = OpenAIEncoder()
+`````
+
+## 创建一个路由器处理语义决策
+`````python
+from semantic_router.layer import RouteLayer
+rl = RouteLayer(encoder=encoder, routes=routes)
+`````
+
+## 使用路由层根据用户查询做出超快决策
+`````python
+rl("don't you love politics?").name
+[Out]: 'politics'
+`````
+https://github.com/aurelio-labs/semantic-router
+
+
+
+# 07 cutword 中文分词库
+cutword 是一个中文分词库，字典文件根据截止到2024年1月份的最新数据统计得到，词频更加合理。
+分词速度是jieba的两倍。 可通过 python -m cutword.comparewithjieba 进行测试。
+
+Note：本项目并不支持英文实体的识别。如需要英文实体的识别，推荐使用nltk。
+`````bash
+pip install -U cutword
+`````
+`````python
+from  cutword import Cutter
+cutter = Cutter()
+res = cutter.cutword("你好，世界")
+print(res)
+`````
+本分词器提供两种词典库，一种是基本的词库，默认加载。一种是升级词库，升级词库总体长度会比基本词库更长一点。
+
+如需要加载升级词库，需要将 want_long_word 设为True
+`````python
+from  cutword import Cutter
+
+cutter = Cutter()
+res = cutter.cutword("精诚所至，金石为开")
+print(res) # ['精诚', '所', '至', '，', '金石为开']
+
+cutter = Cutter(want_long_word=True)
+res = cutter.cutword("精诚所至，金石为开")
+print(res) # ['精诚所至', '，', '金石为开']
+
 `````
